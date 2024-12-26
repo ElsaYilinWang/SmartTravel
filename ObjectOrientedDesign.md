@@ -1,8 +1,8 @@
-Smart Travel app for UL dissertation
+# Smart Travel app for UL dissertation
 
 ref: OOD tutorial by Derek Banas: https://www.youtube.com/watch?v=fJW65Wo7IHI
 
-# Requirements
+## Requirements
 USE CASE Description
 
 A user enters the names of two places and searches the ways from one place to another.
@@ -43,9 +43,10 @@ Steps of Execution
 6. The user chooses to close the page or sign out
 
 
-# Object Model
+## Object Model
 ![smartTravelObjectModel](smartTravelObjectModel.png)
 
-# Sequence Diagram
+## Sequence Diagram
 tool ref: https://sequencediagram.org/
+
 ![smartTravelSequenceDiagram](smartTravelSequenceDiagram.png)
