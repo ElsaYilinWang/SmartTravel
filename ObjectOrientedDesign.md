@@ -55,4 +55,5 @@ tool ref: https://sequencediagram.org/
 tool ref: https://online.visual-paradigm.com/diagrams/solutions/free-class-diagram-tool/
 
 ![smartTravelClassDiagram](classDiagram.png)
+
 class diagram ref: https://online.visual-paradigm.com/app/diagrams/#diagram:proj=0&type=ClassDiagram&width=11&height=8.5&unit=inch
