@@ -44,15 +44,15 @@ Steps of Execution
 
 
 ## Object Model
-![smartTravelObjectModel](smartTravelObjectModel.png)
+![smartTravelObjectModel](objectModel.png)
 
 ## Sequence Diagram
 tool ref: https://sequencediagram.org/
 
-![smartTravelSequenceDiagram](smartTravelSequenceDiagram.png)
+![smartTravelSequenceDiagram](sequenceDiagram.png)
 
 ## Class Diagram
 tool ref: https://online.visual-paradigm.com/diagrams/solutions/free-class-diagram-tool/
 
-![smartTravelClassDiagram](smartTravelClassDiagram.png)
+![smartTravelClassDiagram](classDiagram.png)
 class diagram ref: https://online.visual-paradigm.com/app/diagrams/#diagram:proj=0&type=ClassDiagram&width=11&height=8.5&unit=inch
