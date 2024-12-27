@@ -50,3 +50,9 @@ Steps of Execution
 tool ref: https://sequencediagram.org/
 
 ![smartTravelSequenceDiagram](smartTravelSequenceDiagram.png)
+
+## Class Diagram
+tool ref: https://online.visual-paradigm.com/diagrams/solutions/free-class-diagram-tool/
+
+![smartTravelClassDiagram](smartTravelClassDiagram.png)
+class diagram ref: https://online.visual-paradigm.com/app/diagrams/#diagram:proj=0&type=ClassDiagram&width=11&height=8.5&unit=inch
