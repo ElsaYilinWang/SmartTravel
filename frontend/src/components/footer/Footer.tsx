@@ -16,7 +16,7 @@ const Footer = () => {
                         padding: "20px"}}>
                             Dedicated with love to my parents by
                             <span>
-                                <Link style={{color: "whilte"}}
+                                <Link style={{color: "white"}}
                                 to={"https://github.com/ElsaYilinWang/SmartTravel/tree/main"}>
                                 Yilin (Elsa) Wang
                                 </Link>
@@ -28,4 +28,6 @@ const Footer = () => {
         </footer>
 
     );
-}
+};
+
+export default Footer;
