@@ -11,8 +11,9 @@ const LOGO_STYLES = {
     gap: "8px"
   },
   image: {
-    width: "30px",
-    height: "30px"
+    width: "50px",
+    height: "50px",
+    margin: "auto"
   },
   text: {
     display: { md: "block", sm: "none", xs: "none" },
@@ -20,7 +21,7 @@ const LOGO_STYLES = {
     fontWeight: "800",
     textShadow: "2px 2px 20px #000"
   },
-  mernText: {
+  smartTravelText: {
     fontSize: "20px"
   }
 } as const;
@@ -30,13 +31,13 @@ const Logo: React.FC = () => {
       <div style={LOGO_STYLES.container}>
         <Link to="/">
           <img
-            src="openai.png"
-            alt="open-ai"
+            src="SmartTravelie.png"
+            alt="smart-travel-ie"
             style={LOGO_STYLES.image}
             className="image-inverted"
           />
           <Typography sx={LOGO_STYLES.text}>
-            <span style={LOGO_STYLES.mernText}>MERN</span>-GPT
+            <span style={LOGO_STYLES.smartTravelText}>SmartTravel-Ireland</span>
           </Typography>
         </Link>
       </div>

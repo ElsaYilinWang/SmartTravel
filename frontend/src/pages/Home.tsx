@@ -1,6 +1,7 @@
 import {Box, useTheme} from "@mui/material";
 import TypingAnim from "../components/typer/TypingAnim";
 
+
 const Home = () => {
     const theme = useTheme();
 
@@ -23,7 +24,7 @@ const Home = () => {
                 }}>
                     <img src="SmartTravelie.png"
                         alt="smart-travel-ie"
-                        style={{ width: "200px", margin: "auto"}}/>
+                        style={{ width: "300px", margin: "auto"}}/>
 
                 </Box>
                 <Box>
