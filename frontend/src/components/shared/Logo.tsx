@@ -13,7 +13,8 @@ const LOGO_STYLES = {
   image: {
     width: "50px",
     height: "50px",
-    margin: "auto"
+    margin: "auto",
+    padding: "auto"
   },
   text: {
     display: { md: "block", sm: "none", xs: "none" },
@@ -22,7 +23,7 @@ const LOGO_STYLES = {
     textShadow: "2px 2px 20px #000"
   },
   smartTravelText: {
-    fontSize: "20px"
+    fontSize: "15px"
   }
 } as const;
 

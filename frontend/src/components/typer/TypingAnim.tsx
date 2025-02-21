@@ -3,11 +3,11 @@ import { TypeAnimation } from "react-type-animation";
 
 // Constants for animation configuration
 const ANIMATION_SEQUENCES = [
-  "Welcome to SMARTTRAVELIE", // Initial message
-  1000, // Pause for 1 second
-  "Let's start the adventure and explore infinity!",
+  "Welcome to SmartTravel-Ireland", // Initial message
+  2000, // Pause for 1 second
+  "Let's start the adventure!",
   2000, // Pause for 2 seconds  
-  "SINCERELY",
+  "Good Luck!",
   1500, // Pause for 1.5 seconds
 ] ;
 
