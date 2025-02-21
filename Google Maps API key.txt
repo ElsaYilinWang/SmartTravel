@@ -1,3 +1,1 @@
 Google Maps API key: 
-
-AIzaSyC4Gr4yivTb6d-f9jG26mV5VF6Xdalw9qA
