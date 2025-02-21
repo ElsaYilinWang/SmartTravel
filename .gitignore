@@ -28,3 +28,6 @@ lerna-debug.log*
 *.njsproj
 *.sln
 *.sw?
+
+# API Keys
+Google Maps API key.txt
