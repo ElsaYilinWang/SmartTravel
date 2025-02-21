@@ -1,8 +1,8 @@
 import { AppBar, Toolbar } from "@mui/material";
 import React from "react";
-import Logo from "./shared/Logo";
+import Logo from "../shared/Logo";
 import { useAuth } from "../../context/AuthContext";
-import NavigationLink from "./shared/NavigationLink";
+import NavigationLink from "../shared/NavigationLink";
 
 // Constants for styling to avoid repetition and improve maintainability
 const LINK_STYLES = {

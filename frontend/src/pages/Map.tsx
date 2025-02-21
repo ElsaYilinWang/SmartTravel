@@ -1,5 +1,5 @@
 /// <reference types="@types/google.maps" />
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { Box, Typography, Paper } from '@mui/material';
 
 // Define the type for map coordinates
@@ -9,15 +9,6 @@ type Coordinates = {
 };
 
 const Map: React.FC = () => {
-  // State for storing the map instance
-  const [map, setMap] = useState<google.maps.Map | null>(null);
-  
-  // State for current center position
-  const [center, setCenter] = useState<Coordinates>({
-    lat: 40.7128, // Default to New York City coordinates
-    lng: -74.0060
-  });
-
   // Ref for the map container div
   const mapRef = useRef<HTMLDivElement>(null);
 
@@ -32,20 +23,21 @@ const Map: React.FC = () => {
         return;
       }
 
-      const newMap = new google.maps.Map(mapRef.current, {
-        center,
+      new google.maps.Map(mapRef.current as HTMLElement, {
+        center: {
+          lat: 40.7128, // Default to New York City coordinates
+          lng: -74.0060
+        },
         zoom: 12,
         styles: [], // You can add custom styles here
         mapTypeControl: true,
         streetViewControl: true,
         fullscreenControl: true,
       });
-
-      setMap(newMap);
     };
 
     initMap();
-  }, [center]);
+  }, []);
 
   return (
     <Box sx={{ height: '100vh', width: '100%', position: 'relative' }}>
@@ -62,7 +54,7 @@ const Map: React.FC = () => {
       >
         <Typography variant="h6">Interactive Map</Typography>
         <Typography variant="body2">
-          Current Location: {center.lat.toFixed(4)}, {center.lng.toFixed(4)}
+          Current Location: 40.7128, -74.0060
         </Typography>
       </Paper>
       

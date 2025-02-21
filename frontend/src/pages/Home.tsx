@@ -1,12 +1,8 @@
-import React from "react";
-import {Box, useMediaQuery, useTheme} from "@mui/material";
+import {Box, useTheme} from "@mui/material";
 import TypingAnim from "../components/typer/TypingAnim";
-
-// import Footer
 
 const Home = () => {
     const theme = useTheme();
-    const isBlowMd = useMediaQuery(theme.breakpoints.down("md"));
 
     return (
         <Box width={"100%"} height={"100%"}> 

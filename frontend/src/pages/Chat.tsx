@@ -18,6 +18,11 @@ type Message = {
   content: string;
 };
 
+// Define ChatResponse type for API responses
+type ChatResponse = {
+  chats: Message[];
+};
+
 // Define Chat component
 const Chat: React.FC = () => {
   const navigate = useNavigate();
@@ -42,7 +47,7 @@ const Chat: React.FC = () => {
     try {
       // Send message to API and update with response
       const chatData = await sendChatRequest(content) as ChatResponse;
-      if (chatData?.chats) {
+      if (chatData && typeof chatData === 'object' && 'chats' in chatData) {
         setChatMessages(chatData.chats);
       }
     } catch (error) {
@@ -75,7 +80,7 @@ const Chat: React.FC = () => {
       try {
         toast.loading("Loading Chats", { id: toastId });
         const data = await getUserChats();
-        if (data && 'chats' in data) {
+        if (data && typeof data === 'object' && 'chats' in data) {
           setChatMessages(data.chats as Message[]);
           toast.success("Successfully loaded chats", { id: toastId });
         }
