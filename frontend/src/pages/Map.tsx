@@ -1,3 +1,4 @@
+/// <reference types="@types/google.maps" />
 import { useEffect, useRef, useState } from 'react';
 import { Box, Typography, Paper } from '@mui/material';
 

@@ -4,10 +4,30 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React + TS</title>
+    <title>SmartTravel</title>
+    <script async src="https://maps.googleapis.com/maps/api/js?key=%VITE_GOOGLE_MAPS_API_KEY%&callback=console.debug&libraries=maps,marker&v=beta">
+    </script>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      gmp-map {
+        height: 100%;
+      }
+
+      /* Optional: Makes the sample page fill the window. */
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <gmp-map center="53.14973831176758,-8.626729965209961" zoom="14" map-id="DEMO_MAP_ID">
+      <gmp-advanced-marker position="53.14973831176758,-8.626729965209961" title="My location"></gmp-advanced-marker>
+    </gmp-map>
   </body>
 </html>
