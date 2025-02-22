@@ -1,6 +1,10 @@
 import { Request, Response, NextFunction } from "express";
-import jwt, { JwtPayload } from "jsonwebtoken";
+import jwt, { JwtPayload, SignOptions, Secret } from "jsonwebtoken";
 import { COOKIE_NAME } from "./constants.js";
+
+type StringValue = {
+  toString(): string;
+};
 
 /**
  * Creates a JWT token with user ID and email
@@ -9,10 +13,14 @@ import { COOKIE_NAME } from "./constants.js";
  * @param expiresIn - Token expiration time (e.g. "24h", "7d")
  * @returns Signed JWT token string
  */
-export const createToken = (id: string, email: string, expiresIn: string): string => {
+export const createToken = (id: string, email: string, expiresIn: string | number): string => {
   const payload = { id, email };
+  const options = {
+    expiresIn: expiresIn || "1d" // Default to 1 day if not specified
+  } as jwt.SignOptions;
+  const secret: Secret = process.env.JWT_SECRET || 'default_secret';
   // Sign token with JWT secret from environment variables
-  return jwt.sign(payload, process.env.JWT_SECRET as string, { expiresIn });
+  return jwt.sign(payload, secret, options);
 };
 
 /**
