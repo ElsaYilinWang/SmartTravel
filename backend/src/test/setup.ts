@@ -2,6 +2,8 @@ import { MongoMemoryServer } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import { app } from '../app';
+import jwt from 'jsonwebtoken';
+import request from 'supertest';
 
 // Load test environment variables
 dotenv.config({ path: '.env.test' });
@@ -10,10 +12,15 @@ let mongod: MongoMemoryServer;
 
 // Define global type for test context
 declare global {
-  var signin: () => Promise<string>;
+  var signin: () => Promise<{ token: string; userId: string }>;
+  var generateToken: (userId: string) => string;
 }
 
 beforeAll(async () => {
+  // Set test environment
+  process.env.NODE_ENV = 'test';
+  process.env.JWT_SECRET = 'test-secret';
+  
   // Create an in-memory MongoDB instance
   mongod = await MongoMemoryServer.create();
   const mongoUri = mongod.getUri();
@@ -28,6 +35,9 @@ beforeEach(async () => {
   for (let collection of collections) {
     await collection.deleteMany({});
   }
+
+  // Reset all mocks
+  jest.clearAllMocks();
 });
 
 afterAll(async () => {
@@ -36,13 +46,25 @@ afterAll(async () => {
   await mongod.stop();
 });
 
+// Helper function to generate JWT token
+global.generateToken = (userId: string) => {
+  return jwt.sign({ userId }, process.env.JWT_SECRET!, {
+    expiresIn: '15m'
+  });
+};
+
 // Helper function to get authentication token
 global.signin = async () => {
-  const response = await app.post('/api/auth/signup').send({
-    email: 'test@example.com',
-    password: 'password123',
-    name: 'Test User'
-  });
+  const response = await request(app)
+    .post('/api/auth/signup')
+    .send({
+      email: 'test@example.com',
+      password: 'password123',
+      name: 'Test User'
+    });
 
-  return response.body.token;
+  return {
+    token: response.body.token,
+    userId: response.body.user.id
+  };
 };
