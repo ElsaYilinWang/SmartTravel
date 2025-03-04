@@ -1,10 +1,29 @@
+/**
+ * Header Component
+ * 
+ * A responsive navigation header that adapts its content based on authentication state.
+ * Features:
+ * - Persistent logo display
+ * - Dynamic navigation links
+ * - Authentication-aware rendering
+ * - Consistent styling with theme
+ * 
+ * @module Components/Header
+ */
+
 import { AppBar, Toolbar } from "@mui/material";
 import React from "react";
 import Logo from "../shared/Logo";
 import { useAuth } from "../../context/AuthContext";
 import NavigationLink from "../shared/NavigationLink";
 
-// Constants for styling to avoid repetition and improve maintainability
+/**
+ * Style Constants
+ * 
+ * Defines consistent styling for navigation links:
+ * - PRIMARY: Used for main actions (e.g., Chat, Login)
+ * - SECONDARY: Used for secondary actions (e.g., Logout, Signup)
+ */
 const LINK_STYLES = {
   PRIMARY: {
     bg: "#00fffc",
@@ -17,13 +36,32 @@ const LINK_STYLES = {
 } as const;
 
 /**
- * Header component that displays the app logo and navigation links
- * Changes navigation options based on authentication status
+ * Header Component
+ * 
+ * Renders the application header with:
+ * - App logo
+ * - Navigation links based on auth state
+ * - Consistent styling and positioning
+ * 
+ * Uses Material-UI's AppBar for layout and styling
+ * 
+ * @component
+ * @example
+ * return (
+ *   <Header />
+ * )
  */
 const Header: React.FC = () => {
+  // Get authentication context for dynamic rendering
   const auth = useAuth();
 
-  // Navigation links for authenticated users
+  /**
+   * Navigation Links for Authenticated Users
+   * 
+   * Includes:
+   * - Chat access
+   * - Logout functionality
+   */
   const AuthenticatedLinks = (
     <>
       <NavigationLink
@@ -42,7 +80,13 @@ const Header: React.FC = () => {
     </>
   );
 
-  // Navigation links for unauthenticated users
+  /**
+   * Navigation Links for Unauthenticated Users
+   * 
+   * Includes:
+   * - Login option
+   * - Signup option
+   */
   const UnauthenticatedLinks = (
     <>
       <NavigationLink
@@ -63,13 +107,16 @@ const Header: React.FC = () => {
   return (
     <AppBar
       sx={{
-        bgcolor: "transparent",
-        position: "static",
-        boxShadow: "none"
+        bgcolor: "transparent", // Transparent background
+        position: "static",     // Fixed positioning
+        boxShadow: "none"      // Remove default shadow
       }}
     >
       <Toolbar sx={{ display: "flex" }}>
+        {/* App Logo */}
         <Logo />
+        
+        {/* Dynamic Navigation Links */}
         <div>
           {auth?.isLoggedIn ? AuthenticatedLinks : UnauthenticatedLinks}
         </div>
