@@ -25,10 +25,10 @@ const Map: React.FC = () => {
 
       new google.maps.Map(mapRef.current as HTMLElement, {
         center: {
-          lat: 40.7128, // Default to New York City coordinates
-          lng: -74.0060
+          lat: 53.4129, // Dublin, Ireland coordinates
+          lng: -7.9284
         },
-        zoom: 12,
+        zoom: 6, // Adjusted zoom level for Ireland
         styles: [], // You can add custom styles here
         mapTypeControl: true,
         streetViewControl: true,
@@ -54,7 +54,7 @@ const Map: React.FC = () => {
       >
         <Typography variant="h6">Interactive Map</Typography>
         <Typography variant="body2">
-          Current Location: 40.7128, -74.0060
+          Current Location: 53.4129, -7.9284
         </Typography>
       </Paper>
       

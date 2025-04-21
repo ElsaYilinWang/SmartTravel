@@ -48,7 +48,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/map" element={<Map />} />
+        <Route path="/map" element={auth?.isLoggedIn && auth.user ? <Map /> : <Login />} />
 
         {/* Protected route - redirects to login if user is not authenticated */}
         <Route 
