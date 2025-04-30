@@ -52,8 +52,12 @@ export const generateChatCompletion = async (
     await user.save();
 
     return res.status(200).json({ chats: user.chats });
-  } catch (error) {
+  } catch (error: any) {
     console.error('Chat completion error:', error);
+    // Handle OpenAI rate limit error
+    if (error.response && error.response.status === 429) {
+      return res.status(429).json({ message: "Rate limit exceeded. Please wait and try again." });
+    }
     return res.status(500).json({ message: "Something went wrong" });
   }
 };

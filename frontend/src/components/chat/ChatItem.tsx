@@ -98,10 +98,18 @@ const ChatItem: React.FC<{
         ...(isAssistant ? {} : CHAT_STYLES.userAvatar)
       }}>
         {isAssistant ? (
-          <img src="openai.png" alt="openai" width={"30px"} />
-        ) : (
-          `${auth?.user?.name[0]}${auth?.user?.name.split(" ")[1][0]}`
-        )}
+          <img src="/SmartTravelie.png" alt="assistant-logo" width={"30px"} />
+        ) :
+          (() => {
+            if (auth?.user?.name) {
+              const parts = auth.user.name.trim().split(" ");
+              const first = parts[0]?.[0] || "";
+              const second = parts[1]?.[0] || "";
+              return `${first}${second}` || first || "?";
+            }
+            return "?";
+          })()
+        }
       </Avatar>
       <Box>
         {renderContent()}

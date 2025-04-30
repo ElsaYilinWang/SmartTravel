@@ -15,7 +15,7 @@ const app = express();
 // We only allow requests from localhost:5173, which is where our frontend application is served
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: ["http://localhost:5173", "http://127.0.0.1:64641"],
     credentials: true
   })
 );

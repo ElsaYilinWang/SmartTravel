@@ -28,7 +28,19 @@ const Chat: React.FC = () => {
   const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement | null>(null);
   const auth = useAuth();
-  const [chatMessages, setChatMessages] = useState<Message[]>([]);
+  // Demo messages for first-time users
+const demoMessages: Message[] = [
+  {
+    role: "user",
+    content: "Can you create a 7-day travel itinerary in Ireland for a low budget?"
+  },
+  {
+    role: "assistant",
+    content: `Absolutely! Here’s a 7-day low-budget itinerary for Ireland:\n\n**Day 1: Dublin**\n- Explore Trinity College & Book of Kells\n- Walk around Temple Bar (avoid eating here for budget)\n- Stay in a hostel\n\n**Day 2: Dublin to Galway**\n- Take a morning bus/train to Galway\n- Explore Latin Quarter & Spanish Arch\n- Free street music in the evening\n\n**Day 3: Galway & Cliffs of Moher**\n- Day tour to Cliffs of Moher (find budget group tours)\n- Return to Galway\n\n**Day 4: Galway to Killarney**\n- Bus to Killarney\n- Walk in Killarney National Park\n- Budget B&B or hostel\n\n**Day 5: Ring of Kerry**\n- Join a budget tour or use public bus for Ring of Kerry highlights\n- Return to Killarney\n\n**Day 6: Killarney to Cork**\n- Bus to Cork\n- Visit English Market\n- Explore city on foot\n\n**Day 7: Cork to Dublin**\n- Return to Dublin by bus/train\n- Last-minute sightseeing or shopping\n\n**Tips:**\n- Use public transport (buses/trains)\n- Stay in hostels or budget B&Bs\n- Eat at supermarkets or local cafes\n- Book tours in advance for discounts\n\nLet me know if you want to adjust this itinerary or need more details!`
+  }
+];
+
+const [chatMessages, setChatMessages] = useState<Message[]>([]);
 
   // Handle sending new messages
   const handleSubmit = async () => {
@@ -50,9 +62,15 @@ const Chat: React.FC = () => {
       if (chatData && typeof chatData === 'object' && 'chats' in chatData) {
         setChatMessages(chatData.chats);
       }
-    } catch (error) {
-      toast.error("Failed to send message");
-      // Revert the message if sending fails
+    } catch (error: any) {
+      // Robustly check for 429 and rate limit from various error shapes
+      const status = error?.response?.status || error?.status || error?.response?.data?.status;
+      const message = error?.response?.data?.message || error?.message || "";
+      if (status === 429 || message.includes("Rate limit exceeded")) {
+        toast.error("You're sending messages too quickly. Please wait and try again.");
+      } else {
+        toast.error("Failed to send message");
+      }
       setChatMessages(prev => prev.slice(0, -1));
     }
   };
@@ -150,19 +168,40 @@ const Chat: React.FC = () => {
           <Button
             onClick={handleDeleteChats}
             sx={{
-              width: "200px",
-              my: "auto",
-              color: "white",
-              fontWeight: "700",
-              borderRadius: 3,
               mx: "auto",
-              bgcolor: red[300],
+              my: 2,
+              bgcolor: red[500],
+              color: "white",
+              fontWeight: 700,
+              fontFamily: "work sans",
+              borderRadius: 3,
+              px: 3,
+              py: 1,
               ":hover": {
-                bgcolor: red.A400,
+                bgcolor: red[700],
               },
             }}
           >
-            Clear Conversation
+            Delete All Chats
+          </Button>
+          <Button
+            onClick={() => navigate("/map")}
+            sx={{
+              mx: "auto",
+              my: 1,
+              bgcolor: "primary.main",
+              color: "white",
+              fontWeight: 700,
+              fontFamily: "work sans",
+              borderRadius: 3,
+              px: 3,
+              py: 1,
+              ":hover": {
+                bgcolor: "primary.dark",
+              },
+            }}
+          >
+            Go to Map
           </Button>
         </Box>
       </Box>
@@ -200,7 +239,7 @@ const Chat: React.FC = () => {
             scrollBehavior: "smooth",
           }}
         >
-          {chatMessages.map((chat, index) => (
+          {(chatMessages.length === 0 ? demoMessages : chatMessages).map((chat, index) => (
             <ChatItem 
               content={chat.content} 
               role={chat.role} 
